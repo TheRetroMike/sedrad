@@ -22,10 +22,13 @@ RUN go build $FLAGS -o sedrad .
 FROM alpine
 WORKDIR /app
 
-RUN apk add --no-cache ca-certificates tini
+#RUN apk add --no-cache ca-certificates tini
 
-COPY --from=build /go/src/github.com/theretromike/sedrad/sedrad /app/
-COPY --from=build /go/src/github.com/theretromike/sedrad/infrastructure/config/sample-sedrad.conf /app/
+COPY --from=build /go/src/github.com/theretromike/sedrad/sedrad /usr/bin/sedrad
+#COPY --from=build /go/src/github.com/theretromike/sedrad/infrastructure/config/sample-sedrad.conf /app/
 
-USER nobody
-ENTRYPOINT [ "/sbin/tini", "--" ]
+#USER nobody
+#ENTRYPOINT [ "/sbin/tini", "--" ]
+#COPY --from=build /bugna/bin/* /usr/bin/
+
+ENTRYPOINT [ "/usr/bin/sedrad" ]
