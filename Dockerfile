@@ -31,4 +31,4 @@ COPY --from=build /go/src/github.com/theretromike/sedrad/sedrad /usr/bin/sedrad
 #ENTRYPOINT [ "/sbin/tini", "--" ]
 #COPY --from=build /bugna/bin/* /usr/bin/
 
-ENTRYPOINT [ "/usr/bin/sedrad --utxoindex --disable-upnp" ]
+ENTRYPOINT [ "/usr/bin/sedrad","--utxoindex","--disable-upnp" ]
